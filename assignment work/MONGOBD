@@ -1,0 +1,4 @@
+START MONGO DB->
+
+->sudo systemctl start mongod
+->mongo

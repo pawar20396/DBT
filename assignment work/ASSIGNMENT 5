@@ -1,0 +1,244 @@
+1. Display employees where the first name or last name starts
+with S.
+
+->select FIRST_NAME,LAST_NAME from employees
+  where FIRST_NAME LIKE'S%' OR LAST_NAME LIKE'S%';
+
+2. Display first name and last name after converting the first letter
+of each name to upper case and the rest to lower case.
+
+->SELECT UPPER(FIRST_NAME) FROM employees;
+
+3. Display the first word in job title.
+
+->
+
+4. Display the length of first name for employees where last name
+contain character ‘b’ after 3rd position.
+
+->select LENGTH(FIRST_NAME)FIRST_NAME, LAST_NAME from employees
+  where LAST_NAME like '___b%';
+
+5. Display first name in upper case and email address in lower
+case for employees where the first name and email address are
+same irrespective of the case.
+
+-> select UPPER(FIRST_NAME),LOWER(EMAIL) from employees
+   where FIRST_NAME=EMAIL;
+
+6. Display first name, salary, and round the salary to thousands.
+
+-> SELECT FIRST_NAME,SALARY,ROUND(SALARY) FROM employees;
+   
+
+7. Display manager ID and number of employees managed by the
+manager.
+
+->select MANAGER_ID,count(EMPLOYEE_ID) from employees
+  group by MANAGER_ID;
+
+8. Display employee ID and the date on which he ended his
+previous job.
+
+->select EMPLOYEE_ID, DATE_SUB(HIRE_DATE,INTERVAL 1 DAY) from employees; 							 
+
+9. Display the country ID and number of cities we have in the
+country.
+
+->select l.COUNTRY_ID,count(CITY)
+FROM locations l INNER JOIN countries c
+ON l.COUNTRY_ID=c.COUNTRY_ID
+GROUP BY l.COUNTRY_ID;
+
+10. Display average salary of employees in each department who
+have commission percentage.
+
+->select DEPARTMENT_ID ,AVG(SALARY) FROM employees
+  where COMMISSION_PCT!=0
+  GROUP BY DEPARTMENT_ID;
+
+
+11. Display job ID, number of employees, sum of salary, and
+difference between highest salary and lowest salary of the
+employees of the job.
+
+-> select JOB_ID,COUNT(EMPLOYEE_ID),SUM(SALARY),MAX(SALARY)-MIN(SALARY) FROM employees
+   group by JOB_ID;
+
+
+12. Display job ID for jobs with average salary more than 10000.
+
+-> select JOB_ID,AVG(SALARY) FROM employees
+   WHERE SALARY>10000
+   GROUP BY JOB_ID;
+
+
+13. Display years in which more than 10 employees joined.
+
+->select YEAR(HIRE_DATE) new,EMPLOYEE_ID  FROM employees
+ group by EMPLOYEE_ID 
+having new>10; 									
+
+
+14. Display departments in which more than five employees have
+commission percentage.
+
+->SELECT DEPARTMENT_ID, count(EMPLOYEE_ID) from employees
+ where COMMISSION_PCT > 0 
+group by DEPARTMENT_ID;
+
+
+15. Display employee ID for employees who did more than one job
+in the past.
+
+->select e.EMPLOYEE_ID 
+  from employees e INNER JOIN job_history jh
+  ON e.EMPLOYEE_ID=jh.EMPLOYEE_ID
+
+16. Display job ID of jobs that were done by more than 3
+employees for more than 100 days
+
+->select JOB_ID,COUNT(EMPLOYEE_ID) from employees
+  group by JOB_ID
+  having COUNT(EMPLOYEE_ID)>3;
+
+
+17. Display department ID, year, and Number of employees
+joined.
+
+->select DEPARTMENT_ID,count(EMPLOYEE_ID) from employees			// not complete
+  where year(HIRE_DATE)
+  group by DEPARTMENT_ID;
+  
+
+18. Display departments where any manager is managing more
+than 5 employees.
+
+->SELECT MANAGER_ID,COUNT(EMPLOYEE_ID) FROM employees
+  GROUP BY MANAGER_ID;
+ 
+
+19. Display first name and date of first salary of the employees.
+
+->SELECT FIRST_NAME,DATE_ADD(HIRE_DATE,INTERVAL 30 DAY) FROM employees;
+
+
+20. Display first name and experience of the employees.
+
+->SELECT FIRST_NAME,FROM_DAYS(DATEDIFF(CURDATE(),HIRE_DATE)) as experi from employees; 								    //NOT OK
+
+
+21. Display first name of employees who joined in 2001.
+
+->SELECT FIRST_NAME FROM employees
+  where year(HIRE_DATE) = 2001;
+
+
+22. Display employees who joined in the current year.
+
+->select EMPLOYEE_ID from employees
+  where year(HIRE_DATE) = year(CURDATE());
+
+23. Display the number of days between system date and 1st
+January 2011
+
+->select DATEDIFF(CURDATE(),'2011-01-01');
+
+
+24. Display how many employees joined in each month of the
+current year.
+
+->select EMPLOYEE_ID from employees
+  where month(HIRE_DATE) = month(CURDATE());
+
+25. Display number of employees joined after 15th of the month.
+
+->select EMPLOYEE_ID from employees
+  where DATE(HIRE_DATE) > 15; 
+
+26. Display details of departments in which the maximum salary
+is more than 10000.
+
+->SELECT salary,DEPARTMENT_ID from employees
+  where salary >10000 AND (select DEPARTMENT_NAME from departments where departments.DEPARTMENT_ID= employees.DEPARTMENT_ID );   // NOT OK
+
+27. Display details of departments managed by ‘Smith’.
+
+->
+
+
+28. Display jobs into which employees joined in the current year.
+
+->
+
+
+30. Display job title and average salary for employees who did a
+job in the past.
+
+->select j.JOB_TITLE,AVG(e.SALARY)
+from employees e INNER JOIN job_history jh
+ON e.EMPLOYEE_ID=jh.EMPLOYEE_ID
+INNER JOIN jobs j
+ON e.JOB_ID=j.JOB_ID
+group by JOB_TITLE;
+
+
+31. Display details of manager who manages more than 5
+employees.
+
+->select DISTINCT MANAGER_ID,count(EMPLOYEE_ID) from employees
+group by MANAGER_ID
+HAVING count(EMPLOYEE_ID)>5; 
+
+32. Display the departments into which no employee joined in last
+two years.
+
+->
+
+33. Display the details of departments in which the max salary is
+greater than 10000 for employees who did a job in the past.
+
+-> SELECT e.DEPARTMENT_ID, MAX(e.SALARY)
+   from employees e INNER JOIN job_history jh
+   ON e.EMPLOYEE_ID=jh.EMPLOYEE_ID
+   group by e.DEPARTMENT_ID
+   HAVING MAX(e.SALARY)>10000;
+
+
+34. Display details of current job for employees who worked as IT
+Programmers in the past.
+
+>select 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

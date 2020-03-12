@@ -1,0 +1,163 @@
+1 . Display department name and manager first name .
+
+->select d.DEPARTMENT_NAME ,e.FIRST_NAME
+from departments d INNER JOIN employees e
+ON d.MANAGER_ID=e.MANAGER_ID;
+
+
+2 . Display department name , manager name , and city .
+
+->select d.DEPARTMENT_NAME ,e.FIRST_NAME,l.CITY
+from departments d INNER JOIN employees e
+ON d.MANAGER_ID=e.MANAGER_ID
+INNER JOIN locations l
+ON d.LOCATION_ID=l.LOCATION_ID;
+
+
+3 . Display country name , city , and department name .
+
+->select  d.DEPARTMENT_NAME,c.COUNTRY_NAME, l.CITY 
+  from departments d INNER JOIN  locations l
+  ON d.LOCATION_ID =  l.LOCATION_ID
+  INNER JOIN countries c
+  ON l.COUNTRY_ID= c.COUNTRY_ID;
+     
+
+4 . Display job title , department name , employee last name ,
+starting date for all jobs from 2000 to 2005 .
+
+->select j.JOB_TITLE, e.LAST_NAME, d.DEPARTMENT_NAME
+  from jobs j INNER JOIN employees e
+  ON j.JOB_ID=e.JOB_ID
+  INNER JOIN departments d
+  ON e.DEPARTMENT_ID=d.DEPARTMENT_ID;
+ 
+
+5 . Display job title and average salary of employees
+
+->select j.JOB_TITLE, AVG(e.SALARY) 
+  from jobs j INNER JOIN employees e  
+  ON j.JOB_ID=e.JOB_ID
+  GROUP BY JOB_TITLE;
+
+
+6 . Display job title , employee name , and the difference
+between maximum salary for the job and salary of the
+employee.
+
+-> SELECT j.JOB_TITLE, e.FIRST_NAME, e.LAST_NAME , MAX(e.salary)-e.salary DIFF
+   FROM jobs j INNER JOIN employees e
+   ON j.JOB_ID=e.JOB_ID; 
+   
+
+
+7 . Display last name , job title of employees who have
+commission percentage and belongs to department 30 .
+
+->SELECT e.LAST_NAME,j.JOB_TITLE
+  FROM jobs j INNER JOIN employees e
+  ON j.JOB_ID=e.JOB_ID  
+  WHERE e.DEPARTMENT_ID=30;
+
+8 . Display details of jobs that were done by any employee who
+is currently drawing more than 15000 of salary .
+
+->SELECT j.*
+  from jobs j INNER JOIN employees e
+  ON j.JOB_ID=e.JOB_ID
+  where e.salary>15000;
+
+
+9 . Display department name , manager name , and salary of the
+manager for all managers whose experience is more than 5
+years .
+
+->select d.DEPARTMENT_NAME,
+
+
+10 . Display employee name if the employee joined before his
+manager .
+
+->select m.FIRST_NAME,m.LAST_NAME
+  from employees e INNER JOIN employees m
+  ON e.MANAGER_ID=m.EMPLOYEE_ID;
+
+
+e.FIRST_NAME,e.LAST_NAME, 
+
+11 . Display employee name , job title for the jobs employee did
+in the past where the job was done less than six months .
+
+->
+
+
+12 . Display employee name and country in which he is
+working .
+
+->select e.FIRST_NAME,e.LAST_NAME,c.COUNTRY_NAME
+  from employees e INNER JOIN departments d
+  ON e.DEPARTMENT_ID=d.DEPARTMENT_ID
+  INNER JOIN locations l
+  ON d.LOCATION_ID=l.LOCATION_ID
+  INNER JOIN countries c
+  ON l.COUNTRY_ID=c.COUNTRY_ID; 
+
+
+13 . Display department name , average salary and number of
+employees with commission within the department .
+
+-> select d.DEPARTMENT_NAME,AVG(e.SALARY),COUNT(e.EMPLOYEE_ID)
+   from employees e INNER JOIN departments d
+   ON e.DEPARTMENT_ID=d.DEPARTMENT_ID
+   where COMMISSION_PCT>0
+   group by  d.DEPARTMENT_NAME;
+
+14 . Display the month in which more than 5 employees joined
+in any department located in Sydney .
+
+->select month(e.HIRE_DATE) abc
+  from employees e INNER JOIN departments d
+  ON e.DEPARTMENT_ID=d.DEPARTMENT_ID
+  INNER JOIN locations l
+  ON d.LOCATION_ID=l.LOCATION_ID
+  where l.CITY='Seattle'
+  group by abc
+  having abc>5;
+
+15 . Display details of departments in which the maximum salary
+is more than 10000 .
+
+->select d.*, MAX(e.SALARY)
+  from departments d INNER JOIN employees e
+  ON d.DEPARTMENT_ID=e.DEPARTMENT_ID
+  group by DEPARTMENT_ID
+  having MAX(SALARY)>10000;
+
+16 . Display employee name , job title , start date , and end date
+of past jobs of all employees with commission percentage null .
+
+->select e.FIRST_NAME, e.LAST_NAME, j.JOB_TITLE, jh.START_DATE, jh.END_DATE    								
+from employees e INNER JOIN jobs j											
+ON e.DEPARTMENT_ID = j.DEPARTMENT_ID
+INNER JOIN  job_history jh
+ON j.JOB_ID=jh.JOB_ID;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

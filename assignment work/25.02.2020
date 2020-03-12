@@ -1,0 +1,155 @@
+select e.ename,d.dname from EMP e CROSS JOIN DEPT d;
+
+
+select e.ename,d.dname 
+from EMP e INNER JOIN DEPT d
+where e.deptno=d.deptno;
+
+create table dept
+(
+dno int,
+dname varchar(50),
+constraint PK_dno primary key(dno)
+);
+
+
+create table emp
+(
+empno int,
+empname varchar(50),
+dno int,
+constraint PK_empno PRIMARY KEY(empno),
+constraint FK_emp_dept FOREIGN KEY(dno) references dept (dno)
+);
+
+
+create table address
+(
+id int AUTO_INCREMENT,
+empno int,
+loc varchar(50),
+pincode int,
+dno int,
+constraint PK_add_id PRIMARY KEY(id),
+constraint FK_add_id FOREIGN KEY(empno) references emp(empno)
+);
+
+
+
+create table meeting
+(
+mno int,
+mtopic varchar(50),
+venue int,
+constraint PK_empno PRIMARY KEY(mno)
+);
+
+
+insert into dept
+values
+(10,'dam'),
+(20,'tam'),
+(30,'sam'),
+(40,'wam');
+
+
+
+insert into emp
+values
+(1,'tushar',10),
+(2,'pawar',20),
+(3,'harshal',30),
+(4,'sawant',40);
+
+
+
+insert into address
+(empno,loc,pincode,dno)
+values
+(1,'pune',422002,20),
+(2,'nashik',311455,40),
+(3,'mumbai',478899,10),
+(4,'deola',115578,30);
+
+
+
+
+insert into meeting
+values
+(710,'sahaj','mumbai'),
+(720,'asach','pune'),
+(730,'tp','deola'),
+(740,'boar','nashik');
+
+
+create table emp_meeting
+(
+id int AUTO_INCREMENT,
+mno int ,
+empno int,
+constraint PK_empmeet PRIMARY KEY(id),
+constraint FK_em_meet FOREIGN KEY(mno) references meeting(mno),
+constraint FK_em_emp FOREIGN KEY(empno) references emp(empno)
+);
+
+
+insert into emp_meeting
+(mno,empno)
+values
+(710,1),
+(720,2),
+(730,3),
+(740,4);
+
+
+
+
+
+SELECT m.mno, m.mtopic, em.empno, e.empname 
+from meeting m INNER JOIN emp_meeting em
+ON m.mno = em.mno
+INNER JOIN emp e
+ON em.empno=e.empno;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

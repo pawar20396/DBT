@@ -1,0 +1,185 @@
+1-	CREATE USER
+	'DAC'@'localhost'					//CREATE NEW USER
+	IDENTIFIED BY
+	'DAC';
+
+SHOW GRANTS FOR 'DAC'@'localhost';
+
+GRANT ALL
+ON
+*.*							//grant tu all databas and all table
+TO
+'dac'@'localhost';
+
+FLUSH PRIVILEGES					//TO SAVE CHANGES
+
+CREATE DATABASE database_name				//create new database
+
+
+
+alter table tushar rename column name to name_n;	//rename column
+
+alter table tushar modify column name varchar(256);	//modify column
+
+ALTER TABLE tushar 
+ADD COLUMN MONEY FLOAT(100);				//add column
+
+ALTER TABLE tushar
+DROP COLUMN MONEY					//delete column
+
+INSERT INTO tushar
+(id, name, subject, price)
+VALUES
+(1,'NCRT','chemistry',100);
+
+SELECT * FROM tushar					//to view record from table
+
+SELECT * FROM tushar
+order by price/name/id					//to get ascending or descending data
+ASC-ascending
+DESC-descending
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+SELECT * FROM BOOKS
+WHERE SUBJECT='java programming';
+
+SELECT * FROM BOOKS
+WHERE SUBJECT='java programming'
+AND
+PRICE>=500;
+
+
+SELECT * FROM BOOKS
+WHERE SUBJECT='c programming'
+AND
+AUTHOR='yashwant kanetkar';
+
+
+SELECT * FROM BOOKS
+WHERE SUBJECT='c programming'
+AND
+AUTHOR='yashwant kanetkar'
+AND PRICE>=300;
+
+
+SELECT * FROM BOOKS
+WHERE SUBJECT='c programming'
+OR
+AUTHOR='yashwant kanetkar'
+OR
+PRICE>=300;
+
+SELECT * FROM EMP
+WHERE sal>=2000;
+
+
+SELECT * FROM EMP
+WHERE sal BETWEEN 
+2000 AND 3000;
+
+SELECT * FROM EMP
+WHERE ename BETWEEN 
+'A' AND 'D';
+
+SELECT * FROM EMP
+WHERE deptno BETWEEN 
+'10' AND '20';
+
+SELECT * FROM EMP
+WHERE hire  BETWEEN 
+'1980-12-18' AND '1982-02-16';
+
+
+SELECT * FROM EMP
+WHERE ename LIKE 'SMITH';
+
+
+
+SELECT * FROM EMP
+WHERE JOB LIKE 'SALESMAN';
+
+
+SELECT * FROM BookTable
+WHERE book_name LIKE 'Programming%';
+
+
+SELECT * FROM BookTable
+WHERE book_name LIKE '%Programming';
+
+
+SELECT * FROM BookTable
+WHERE book_name LIKE '%Programming%';
+
+
+SELECT * FROM BookTable
+WHERE book_name LIKE 'o%t';
+
+
+SELECT * FROM BookTable
+WHERE book_name LIKE '_p%';
+
+SELECT * FROM BookTable
+WHERE book_name LIKE '___r%';
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+SELECT * FROM BOOKS;
+
+ALTER TABLE BOOKS
+RENAME COLUMN column_name TO new_column_name;				//column modification
+
+
+UPDATE BOOKS 
+SET									//row modificaton	
+price=price+price*2;
+
+
+update BOOKS
+set NAME='TUSHAR'
+WHERE ID=1001;
+
+ALTER TABLE BOOKS
+ADD COLUMN
+BOOKING
+INT; 
+
+ALTER TABLE BOOKS
+DROP COLUMN BOOKING;
+
+
+INSERT INTO BOOKS
+(ID, NAME, AUTHOR,SUBJECT,PRICE)
+VALUES
+(10000,'MICRO','TUSHAR','SCIENCE',50);
+
+
+DELETE FROM BOOKS
+WHERE ID=10000;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

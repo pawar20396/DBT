@@ -1,0 +1,64 @@
+QUESTION 1. Create 'dac' user with password 'dac'.
+
+mysql -u root -p;
+CREATE USER 'DAC'@'LOCALHOST' IDENTIFIED BY 'DAC'
+
+
+QUESTION 2- Create 'spj' database & grant all permissions to 'dac' user.
+
+CREATE DATABASE dac_db;
+
+GRANT ALL
+ON .*. TO
+'dac_db'@'localhost';
+
+FLUSH PRIVILEGES;
+
+QUESTION 3- Create tables mentioned in file spj_table_for_SQL_Excercise.txt (by 'dac' login).
+
+CREATE TABLE  S
+(`S#` CHAR(5) NOT NULL,
+Sname CHAR(20),
+Status SMALLINT,
+City CHAR(15));
+
+CREATE TABLE P
+(`P#` CHAR(6) NOT NULL, 
+Pname CHAR(20),
+Color CHAR(6),
+Weight SMALLINT,
+CITY CHAR(15));
+
+
+CREATE TABLE J
+(`J#` CHAR(4) NOT NULL,
+Jname CHAR(10),
+City CHAR(15));
+
+CREATE TABLE sp
+(`S#` CHAR(4) NOT NULL,
+`P#` CHAR(4) NOT NULL,
+`J#` CHAR(4) NOT NULL,
+QTY INT);
+
+QUESTION 4- Create 'classwork' database & grant all permissions to 'dac' user. Import classwork-db.sql.
+
+CREATE DATABASE classwork;
+USE classwork
+
+QUESTION 5-Create 'hr' database & grant all permissions to 'dac' user. Import hr-db.sql.
+
+CREATE DATABASE hr;
+USE hr
+
+QUESTION 6- Create 'sales' database & grant all permissions to 'dac' user. Import sales-db.sql.
+
+CREATE DATABASE sales;
+USE sales
+
+QUESTION 7- Create 'northwind' database & grant all permissions to 'dac' user. Import northwind-db.sql.
+
+CREATE DATABASE northwind;
+USE northwind
+
+
